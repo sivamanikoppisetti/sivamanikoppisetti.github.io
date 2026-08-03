@@ -1221,10 +1221,6 @@ nav.links a:hover {
 }
 
 
-/* TOP ROW
-   NUMBER + TOOL IMAGE
-*/
-
 .journey-card-top {
 
   display:
@@ -2058,6 +2054,298 @@ nav.links a:hover {
 
 
 /* =========================================
+   FAQ
+========================================= */
+
+.faq {
+
+  background:
+    var(--paper);
+
+  border-top:
+    1px solid
+    var(--line);
+
+}
+
+
+.faq-container {
+
+  max-width:
+    920px;
+
+  margin:
+    0 auto;
+
+}
+
+
+.faq-header {
+
+  text-align:
+    center;
+
+  max-width:
+    700px;
+
+  margin:
+    0 auto
+    50px;
+
+}
+
+
+.faq-header .eyebrow {
+
+  justify-content:
+    center;
+
+}
+
+
+.faq-header h2 {
+
+  font-size:
+    clamp(
+      32px,
+      4vw,
+      48px
+    );
+
+}
+
+
+.faq-header p {
+
+  color:
+    var(--muted);
+
+  font-size:
+    17px;
+
+  margin-top:
+    18px;
+
+}
+
+
+.faq-list {
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    16px;
+
+}
+
+
+.faq-item {
+
+  background:
+    white;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    18px;
+
+  overflow:
+    hidden;
+
+  transition:
+    0.25s ease;
+
+}
+
+
+.faq-item:hover {
+
+  box-shadow:
+    0 10px 30px
+    rgba(
+      20,
+      35,
+      30,
+      0.06
+    );
+
+}
+
+
+.faq-question {
+
+  width:
+    100%;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    20px;
+
+  padding:
+    24px;
+
+  background:
+    transparent;
+
+  color:
+    var(--ink);
+
+  border:
+    none;
+
+  text-align:
+    left;
+
+  font-family:
+    var(--heading);
+
+  font-size:
+    17px;
+
+  font-weight:
+    700;
+
+  cursor:
+    pointer;
+
+}
+
+
+.faq-icon {
+
+  flex:
+    none;
+
+  width:
+    30px;
+
+  height:
+    30px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--green-light);
+
+  color:
+    var(--green);
+
+  font-size:
+    20px;
+
+  font-weight:
+    500;
+
+  transition:
+    transform
+    0.25s ease;
+
+}
+
+
+.faq-answer {
+
+  display:
+    grid;
+
+  grid-template-rows:
+    0fr;
+
+  transition:
+    grid-template-rows
+    0.3s ease;
+
+}
+
+
+.faq-answer-inner {
+
+  overflow:
+    hidden;
+
+}
+
+
+.faq-answer p {
+
+  margin:
+    0;
+
+  padding:
+    0 24px
+    24px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    15px;
+
+  line-height:
+    1.7;
+
+}
+
+
+.faq-item.active {
+
+  border-color:
+    #c8d8d3;
+
+}
+
+
+.faq-item.active
+.faq-answer {
+
+  grid-template-rows:
+    1fr;
+
+}
+
+
+.faq-item.active
+.faq-icon {
+
+  transform:
+    rotate(
+      45deg
+    );
+
+  background:
+    var(--green);
+
+  color:
+    white;
+
+}
+
+
+/* =========================================
    FOOTER
 ========================================= */
 
@@ -2417,6 +2705,25 @@ footer {
   }
 
 
+  .faq-question {
+
+    padding:
+      20px;
+
+    font-size:
+      16px;
+
+  }
+
+
+  .faq-answer p {
+
+    padding:
+      0 20px
+      20px;
+
+  }
+
 }
 
 </style>
@@ -2456,12 +2763,8 @@ footer {
 
 
 <span class="logo-name">
-
-Data Analyst Weekend Lab
-
-<small>
 Sivamani Koppisetti
-</small>
+
 
 </span>
 
@@ -2492,6 +2795,11 @@ Tools
 
 <a href="#course-plan">
 Course Plan
+</a>
+
+
+<a href="#faq">
+FAQ
 </a>
 
 
@@ -2746,8 +3054,7 @@ Sivamani Koppisetti
 
 <p>
 
-Reporting Analyst @ MediaMint
-
+Reporting Analyst
 </p>
 
 
@@ -3498,8 +3805,6 @@ Career guidance
 </div>
 
 </section>
-
-
 
 
 
@@ -4431,6 +4736,379 @@ We'll contact you with the next steps.
 </section>
 
 
+
+<!-- =========================================
+     FAQ
+     THIS IS THE LAST MAIN PAGE SECTION
+========================================= -->
+
+<section
+  class="faq"
+  id="faq"
+>
+
+
+<div class="wrap faq-container">
+
+
+<div class="faq-header reveal">
+
+
+<p class="eyebrow">
+
+FAQ
+
+</p>
+
+
+<h2>
+
+Questions, answered
+
+</h2>
+
+
+<p>
+
+Everything you need to know
+before joining the Data Analyst
+Weekend Lab.
+
+</p>
+
+
+</div>
+
+
+
+<div class="faq-list">
+
+
+<!-- FAQ 1 -->
+
+<div class="faq-item active reveal">
+
+
+<button
+  class="faq-question"
+  type="button"
+  aria-expanded="true"
+>
+
+
+<span>
+
+Is it completely free?
+
+</span>
+
+
+<span class="faq-icon">
+
++
+
+</span>
+
+
+</button>
+
+
+<div class="faq-answer">
+
+
+<div class="faq-answer-inner">
+
+
+<p>
+
+Yes. All the training sessions are 100% free,
+no fees, no hidden charges, no payment details required.
+
+</p>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FAQ 2 -->
+
+<div class="faq-item reveal">
+
+
+<button
+  class="faq-question"
+  type="button"
+  aria-expanded="false"
+>
+
+
+<span>
+
+Who can join?
+
+</span>
+
+
+<span class="faq-icon">
+
++
+
+</span>
+
+
+</button>
+
+
+<div class="faq-answer">
+
+
+<div class="faq-answer-inner">
+
+
+<p>
+
+The training is open to students, freshers,
+career switchers and anyone who wants to
+learn Data Analytics from the basics.
+
+</p>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FAQ 3 -->
+
+<div class="faq-item reveal">
+
+
+<button
+  class="faq-question"
+  type="button"
+  aria-expanded="false"
+>
+
+
+<span>
+
+Will recordings be available?
+
+</span>
+
+
+<span class="faq-icon">
+
++
+
+</span>
+
+
+</button>
+
+
+<div class="faq-answer">
+
+
+<div class="faq-answer-inner">
+
+
+<p>
+
+Session recording availability will be
+communicated to registered participants
+based on the training schedule.
+
+</p>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FAQ 4 -->
+
+<div class="faq-item reveal">
+
+
+<button
+  class="faq-question"
+  type="button"
+  aria-expanded="false"
+>
+
+
+<span>
+
+Do I get a certificate?
+
+</span>
+
+
+<span class="faq-icon">
+
++
+
+</span>
+
+
+</button>
+
+
+<div class="faq-answer">
+
+
+<div class="faq-answer-inner">
+
+
+<p>
+
+Certificate availability will be communicated
+to participants based on the training program
+and completion requirements.
+
+</p>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FAQ 5 -->
+
+<div class="faq-item reveal">
+
+
+<button
+  class="faq-question"
+  type="button"
+  aria-expanded="false"
+>
+
+
+<span>
+
+How do I join the live session?
+
+</span>
+
+
+<span class="faq-icon">
+
++
+
+</span>
+
+
+</button>
+
+
+<div class="faq-answer">
+
+
+<div class="faq-answer-inner">
+
+
+<p>
+
+First, reserve your free seat using the
+registration form above. After registration,
+you will receive the required session details
+and joining instructions.
+
+</p>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FAQ 6 -->
+
+<div class="faq-item reveal">
+
+
+<button
+  class="faq-question"
+  type="button"
+  aria-expanded="false"
+>
+
+
+<span>
+
+How long is each class?
+
+</span>
+
+
+<span class="faq-icon">
+
++
+
+</span>
+
+
+</button>
+
+
+<div class="faq-answer">
+
+
+<div class="faq-answer-inner">
+
+
+<p>
+
+The live sessions are scheduled as weekend
+training sessions. Exact session duration
+and timing will be shared with registered
+participants.
+
+</p>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
 </main>
 
 
@@ -4468,13 +5146,7 @@ We'll contact you with the next steps.
 
 <span class="logo-name">
 
-Data Analyst Weekend Lab
-
-<small>
-
 Sivamani Koppisetti
-
-</small>
 
 </span>
 
@@ -4487,7 +5159,7 @@ Sivamani Koppisetti
 
 
 <a
-  href="https://www.linkedin.com/in/sivamanikoppisetti-dataanalyst"
+  href="https://www.linkedin.com/in/sivamani-koppisetti-dataanalyst/"
   target="_blank"
   rel="noopener"
 >
@@ -4509,6 +5181,13 @@ Email
 <a href="#register">
 
 Register
+
+</a>
+
+
+<a href="#faq">
+
+FAQ
 
 </a>
 
@@ -4857,6 +5536,102 @@ form.addEventListener(
 
 
     }
+
+
+  }
+);
+
+
+
+/* =========================================
+   FAQ ACCORDION
+========================================= */
+
+const faqQuestions =
+document.querySelectorAll(
+  ".faq-question"
+);
+
+
+faqQuestions.forEach(
+  function(question) {
+
+
+    question.addEventListener(
+      "click",
+      function() {
+
+
+        const faqItem =
+        question.closest(
+          ".faq-item"
+        );
+
+
+        const isActive =
+        faqItem.classList.contains(
+          "active"
+        );
+
+
+        /*
+          Close all other FAQ items
+          so only one answer stays open
+        */
+
+        document
+        .querySelectorAll(
+          ".faq-item"
+        )
+        .forEach(
+          function(item) {
+
+
+            item.classList.remove(
+              "active"
+            );
+
+
+            item
+            .querySelector(
+              ".faq-question"
+            )
+            .setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+
+          }
+        );
+
+
+        /*
+          Open the clicked item
+          if it was previously closed
+        */
+
+        if (
+          !isActive
+        ) {
+
+
+          faqItem.classList.add(
+            "active"
+          );
+
+
+          question.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+
+        }
+
+
+      }
+    );
 
 
   }
