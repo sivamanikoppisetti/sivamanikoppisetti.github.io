@@ -1819,7 +1819,7 @@
         const data = await response.json();
 
         if (data && typeof data.totalRegistrations !== "undefined") {
-          statElement.textContent = (data.totalRegistrations / 100) + "+";
+          statElement.textContent = data.totalRegistrations + "/100";// Result: "56/100"
         }
       } catch (error) {
         console.error("Could not fetch live count, showing fallback value:", error);
