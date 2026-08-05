@@ -152,22 +152,30 @@
       gap: 30px;
     }
 
-    /* Header Logo Container */
-    .logo {
+    /* Pure CSS Logo - No Background, Perfect Grid Alignment */
+    .logo-text {
       display: inline-flex;
-      align-items: center;
-      height: 80px;
-      max-width: 400px;
-      overflow: hidden;
+      align-items: baseline;
+      font-family: var(--heading);
+      font-weight: 800;
+      font-size: 42px;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      line-height: 1;
+      padding: 0;
+      margin: 0;
     }
 
-    header .site-logo {
-      height: 180%;
-      width: auto;
-      max-height: none;
-      object-fit: contain;
-      mix-blend-mode: multiply;
-      display: block;
+    .logo-text .logo-green {
+      color: var(--green);
+    }
+
+    .logo-text .logo-sub {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-left: 1px;
     }
 
     nav.links {
@@ -953,24 +961,6 @@
       flex-wrap: wrap;
     }
 
-    /* Footer Specific Logo Container */
-    footer .logo {
-      display: inline-flex;
-      align-items: center;
-      height: 64px;
-      max-width: 320px;
-      overflow: hidden;
-    }
-
-    footer .site-logo {
-      height: 100%;
-      width: auto;
-      max-height: none;
-      object-fit: contain;
-      mix-blend-mode: multiply;
-      display: block;
-    }
-
     .footer-links {
       display: flex;
       gap: 20px;
@@ -1089,6 +1079,14 @@
         font-size: 38px;
       }
 
+      .logo-text {
+        font-size: 34px;
+      }
+
+      .logo-text .logo-sub {
+        font-size: 16px;
+      }
+
       .stats,
       .journey-grid,
       .outcomes-grid {
@@ -1119,8 +1117,8 @@
   ========================================= -->
   <header>
     <div class="wrap nav">
-      <a href="#top" class="logo" aria-label="KoLogs Homepage">
-        <img src="logo.png" alt="KoLogs" class="site-logo">
+      <a href="#top" class="logo-text" aria-label="KoLogs Homepage">
+        Ko<span class="logo-green">Logs</span><span class="logo-sub">.com</span>
       </a>
 
       <nav class="links" id="navLinks">
@@ -1710,8 +1708,8 @@
   <footer>
     <div class="wrap">
       <div class="footer-top">
-        <a href="#top" class="logo" aria-label="KoLogs Footer Logo">
-          <img src="logo.png" alt="KoLogs" class="site-logo">
+        <a href="#top" class="logo-text" aria-label="KoLogs Footer Logo">
+          Ko<span class="logo-green">Logs</span><span class="logo-sub">.com</span>
         </a>
 
         <div class="footer-links">
