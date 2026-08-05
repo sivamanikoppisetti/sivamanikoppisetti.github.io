@@ -1220,6 +1220,9 @@
             I'm a Reporting Analyst at MediaMint, working with SQL, BigQuery, Excel, Power BI, and Looker Studio to turn business data into reports, dashboards, and actionable insights.
           </p>
           <p>
+            Before this, I spent over two years at Copart as a Jr Analyst, working with U.S.-based stakeholders on operational and financial data, KPI tracking, and data validation.
+          </p>
+          <p>
             I know the exact difference between simply learning a tool theoretically and applying it effectively in a production corporate environment.
           </p>
         </div>
@@ -1823,8 +1826,12 @@
       }
     }
 
-    // Run fetch on load
+    // 1. Fetch count immediately on page load
     document.addEventListener("DOMContentLoaded", fetchLiveRegistrations);
+
+    // 2. Refresh count automatically every 2 seconds
+    setInterval(fetchLiveRegistrations, 2000);
+
 
     /* =========================================
        FAST SUBMIT FORM TO GOOGLE SHEETS
@@ -1837,7 +1844,7 @@
 
       const submitButton = regForm.querySelector('button[type="submit"]');
 
-      // 1. INSTANT FEEDBACK (0ms delay)
+      // Instant UI feedback (0ms delay)
       submitButton.disabled = true;
       submitButton.textContent = "Registration Complete ✓";
       
@@ -1845,19 +1852,18 @@
       successMsg.classList.remove("error-msg");
       successMsg.classList.add("show");
 
-      // Save form data before resetting
       const formData = new FormData(regForm);
       regForm.reset();
 
-      // 2. SEND TO GOOGLE SHEETS IN THE BACKGROUND
+      // Send to Google Sheets in background
       fetch(regForm.action, {
         method: "POST",
         body: formData,
         mode: "no-cors"
       })
       .then(() => {
-        // 3. Refresh live count in background
-        setTimeout(fetchLiveRegistrations, 2000);
+        // Refresh live count 5 seconds after form submission
+        setTimeout(fetchLiveRegistrations, 5000);
       })
       .catch((error) => {
         console.error("Background save error:", error);
