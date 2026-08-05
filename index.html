@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sivamani Koppisetti</title>
-  <meta name="description" content="Free Data Analyst training by Sivamani Koppisetti covering Excel, SQL, Power BI, Looker Studio, BigQuery and AWS.">
+  <meta name="description" content="Free weekend Data Analyst training by Sivamani Koppisetti covering Excel, SQL, Power BI, Looker Studio, BigQuery and AWS.">
 
   <!-- Favicon / Browser Tab Logo -->
   <link rel="icon" type="image/png" href="favicon.png">
@@ -152,7 +152,7 @@
       gap: 30px;
     }
 
-    /* Pure CSS Logo - No Background, Perfect Grid Alignment */
+    /* Pure CSS Logo */
     .logo-text {
       display: inline-flex;
       align-items: baseline;
@@ -351,9 +351,36 @@
       background: #fbfbf8;
     }
 
-    .stat.highlight {
-      background: var(--yellow-light);
-      border-color: #efd38e;
+    /* HIGH-VISIBILITY FREE KPI CARD */
+    .stat.highlight.free-pulse {
+      background: #fff8e6;
+      border: 2px solid #f1b84b;
+      position: relative;
+      box-shadow: 0 0 15px rgba(241, 184, 75, 0.25);
+    }
+
+    .free-badge-tag {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      background: #176b5d;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .stat.highlight.free-pulse strong {
+      color: #0f5147;
+      font-size: 32px;
+    }
+
+    .stat.highlight.free-pulse span {
+      color: #17201d;
+      font-weight: 700;
     }
 
     .stat strong {
@@ -1147,8 +1174,8 @@
           <p class="eyebrow">Free Weekend Live Training</p>
           <h1>Learn Data Analytics <span>from zero to job-ready.</span></h1>
           <p class="hero-description">
-            I'm <strong>Sivamani Koppisetti</strong>.
-            I created this weekend training to help students, freshers, and career switchers learn Data Analytics practically from basics to real-world projects and interview prep.
+            I'm <strong>Sivamani Koppisetti</strong>, a working Reporting Analyst.
+            I created this weekend training to help students, freshers, and career switchers learn Data Analytics practically — from basics to real-world projects and interview prep.
           </p>
           <div class="hero-buttons">
             <a href="#register" class="btn btn-primary">Reserve Your Free Seat →</a>
@@ -1165,13 +1192,15 @@
           </div>
           <div class="hero-card-body">
             <div class="stats">
-              <div class="stat highlight">
+              <!-- High-Visibility 100% Free Badge -->
+              <div class="stat highlight free-pulse">
+                <span class="free-badge-tag">100% FREE NO COST</span>
                 <strong>₹0</strong>
                 <span>Completely Free</span>
               </div>
               <div class="stat">
-                <strong>2+</strong>
-                <span>Live Sessions / Week</span>
+                <strong id="liveRegistrations">56+</strong>
+                <span>Live Registrations</span>
               </div>
               <div class="stat">
                 <strong>6+</strong>
@@ -1207,6 +1236,9 @@
           <h2>Learn from someone who works with data in the real world.</h2>
           <p>
             I'm a Reporting Analyst at MediaMint, working with SQL, BigQuery, Excel, Power BI, and Looker Studio to turn business data into reports, dashboards, and actionable insights.
+          </p>
+          <p>
+            Before this, I spent over two years at Copart as a Jr Analyst, working with U.S.-based stakeholders on operational and financial data, KPI tracking, and data validation.
           </p>
           <p>
             I know the exact difference between simply learning a tool theoretically and applying it effectively in a production corporate environment.
@@ -1309,7 +1341,7 @@
             <ul>
               <li>Formulas and key functions</li>
               <li>Data cleaning techniques</li>
-              <li>LOOKUP'S</li>
+              <li>VLOOKUP / XLOOKUP</li>
               <li>Pivot Tables & Charts</li>
             </ul>
           </div>
@@ -1582,7 +1614,7 @@
           </div>
         </div>
 
-        <form class="form-box reveal" id="regForm" action="https://formspree.io/f/xdenolne" method="POST">
+        <form class="form-box reveal" id="regForm" action="https://script.google.com/macros/s/AKfycbzl7p3-sbaHe6P5VQ7t2FDGJzuDGSGRADL2q0sxoKtbhWe6yogYWqqoZ8j26JxZfqJTvw/exec" method="POST">
           <div class="field">
             <label for="rname">Full Name</label>
             <input type="text" id="rname" name="name" placeholder="Enter your full name" required>
@@ -1598,10 +1630,8 @@
             <input type="email" id="remail" name="email" placeholder="you@example.com" required>
           </div>
 
-          <input type="hidden" name="_subject" value="New Data Analyst Weekend Lab Registration">
-
           <button type="submit" class="btn form-button">Reserve My Free Seat →</button>
-          <p class="form-note">Your registration details will be securely submitted.</p>
+          <p class="form-note">Your registration details will be securely submitted to Google Sheets.</p>
 
           <div class="success-msg" id="successMsg">
             Registration submitted successfully! We'll contact you with the next steps.
@@ -1729,6 +1759,9 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    /* =========================================
+       MOBILE MENU TOGGLE
+    ========================================= */
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -1744,6 +1777,9 @@
       });
     });
 
+    /* =========================================
+       SCROLL REVEAL ANIMATIONS
+    ========================================= */
     const revealElements = document.querySelectorAll(".reveal");
 
     if ("IntersectionObserver" in window) {
@@ -1761,42 +1797,9 @@
       revealElements.forEach(element => element.classList.add("show"));
     }
 
-    const form = document.getElementById("regForm");
-    const successMsg = document.getElementById("successMsg");
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const submitButton = form.querySelector('button[type="submit"]');
-      const originalText = submitButton.textContent;
-
-      submitButton.disabled = true;
-      submitButton.textContent = "Submitting...";
-      successMsg.classList.remove("show", "error-msg");
-
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { "Accept": "application/json" }
-        });
-
-        if (response.ok) {
-          successMsg.textContent = "Registration submitted successfully! We'll contact you with the next steps.";
-          successMsg.classList.add("show");
-          form.reset();
-          submitButton.textContent = "Registration Complete ✓";
-        } else {
-          throw new Error("Form submission failed");
-        }
-      } catch (error) {
-        successMsg.classList.add("error-msg", "show");
-        successMsg.textContent = "Something went wrong while submitting your registration. Please try again.";
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-      }
-    });
-
+    /* =========================================
+       FAQ ACCORDION TOGGLE
+    ========================================= */
     const faqQuestions = document.querySelectorAll(".faq-question");
 
     faqQuestions.forEach(question => {
@@ -1814,6 +1817,77 @@
           question.setAttribute("aria-expanded", "true");
         }
       });
+    });
+
+    /* =========================================
+       FETCH LIVE REGISTRATIONS FROM APPS SCRIPT
+    ========================================= */
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzl7p3-sbaHe6P5VQ7t2FDGJzuDGSGRADL2q0sxoKtbhWe6yogYWqqoZ8j26JxZfqJTvw/exec";
+
+    async function fetchLiveRegistrations() {
+      const statElement = document.getElementById("liveRegistrations");
+      if (!statElement) return;
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: "GET",
+          redirect: "follow"
+        });
+
+        const data = await response.json();
+
+        if (data && typeof data.totalRegistrations !== "undefined") {
+          statElement.textContent = data.totalRegistrations + "+";
+        }
+      } catch (error) {
+        console.error("Could not fetch live count, showing fallback value:", error);
+      }
+    }
+
+    // Run fetch on load
+    document.addEventListener("DOMContentLoaded", fetchLiveRegistrations);
+
+    /* =========================================
+       SUBMIT FORM DIRECTLY TO GOOGLE SHEETS
+    ========================================= */
+    const regForm = document.getElementById("regForm");
+    const successMsg = document.getElementById("successMsg");
+
+    regForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const submitButton = regForm.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+      successMsg.classList.remove("show", "error-msg");
+
+      try {
+        const formData = new FormData(regForm);
+
+        await fetch(regForm.action, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors" // Recommended for Google Apps Script POST requests
+        });
+
+        // UI Feedback
+        successMsg.textContent = "Registration submitted successfully! Your seat is reserved.";
+        successMsg.classList.add("show");
+        regForm.reset();
+        submitButton.textContent = "Registration Complete ✓";
+
+        // Refresh live count immediately
+        setTimeout(fetchLiveRegistrations, 1500);
+
+      } catch (error) {
+        console.error("Form submit error:", error);
+        successMsg.classList.add("error-msg", "show");
+        successMsg.textContent = "Something went wrong while submitting. Please try again.";
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      }
     });
   </script>
 </body>
