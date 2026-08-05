@@ -351,34 +351,18 @@
       background: #fbfbf8;
     }
 
-    /* HIGH-VISIBILITY FREE KPI CARD */
-    .stat.highlight.free-pulse {
+    /* CLEAN ₹0 FREE KPI CARD */
+    .stat.highlight {
       background: #fff8e6;
-      border: 2px solid #f1b84b;
-      position: relative;
-      box-shadow: 0 0 15px rgba(241, 184, 75, 0.25);
+      border: 1.5px solid #f1b84b;
     }
 
-    .free-badge-tag {
-      position: absolute;
-      top: -10px;
-      right: 10px;
-      background: #176b5d;
-      color: #ffffff;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      padding: 2px 8px;
-      border-radius: 999px;
-      text-transform: uppercase;
-    }
-
-    .stat.highlight.free-pulse strong {
+    .stat.highlight strong {
       color: #0f5147;
       font-size: 32px;
     }
 
-    .stat.highlight.free-pulse span {
+    .stat.highlight span {
       color: #17201d;
       font-weight: 700;
     }
@@ -826,7 +810,7 @@
     }
 
     .form-button:disabled {
-      opacity: 0.7;
+      opacity: 0.85;
       cursor: not-allowed;
       transform: none;
     }
@@ -1192,9 +1176,7 @@
           </div>
           <div class="hero-card-body">
             <div class="stats">
-              <!-- High-Visibility 100% Free Badge -->
-              <div class="stat highlight free-pulse">
-                <span class="free-badge-tag">100% FREE NO COST</span>
+              <div class="stat highlight">
                 <strong>₹0</strong>
                 <span>Completely Free</span>
               </div>
@@ -1848,46 +1830,41 @@
     document.addEventListener("DOMContentLoaded", fetchLiveRegistrations);
 
     /* =========================================
-       SUBMIT FORM DIRECTLY TO GOOGLE SHEETS
+       FAST SUBMIT FORM TO GOOGLE SHEETS
     ========================================= */
     const regForm = document.getElementById("regForm");
     const successMsg = document.getElementById("successMsg");
 
-    regForm.addEventListener("submit", async (event) => {
+    regForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
       const submitButton = regForm.querySelector('button[type="submit"]');
-      const originalText = submitButton.textContent;
 
+      // 1. INSTANT FEEDBACK (0ms delay)
       submitButton.disabled = true;
-      submitButton.textContent = "Submitting...";
-      successMsg.classList.remove("show", "error-msg");
+      submitButton.textContent = "Registration Complete ✓";
+      
+      successMsg.textContent = "Registration submitted successfully! Your seat is reserved.";
+      successMsg.classList.remove("error-msg");
+      successMsg.classList.add("show");
 
-      try {
-        const formData = new FormData(regForm);
+      // Save form data before resetting
+      const formData = new FormData(regForm);
+      regForm.reset();
 
-        await fetch(regForm.action, {
-          method: "POST",
-          body: formData,
-          mode: "no-cors" // Recommended for Google Apps Script POST requests
-        });
-
-        // UI Feedback
-        successMsg.textContent = "Registration submitted successfully! Your seat is reserved.";
-        successMsg.classList.add("show");
-        regForm.reset();
-        submitButton.textContent = "Registration Complete ✓";
-
-        // Refresh live count immediately
-        setTimeout(fetchLiveRegistrations, 1500);
-
-      } catch (error) {
-        console.error("Form submit error:", error);
-        successMsg.classList.add("error-msg", "show");
-        successMsg.textContent = "Something went wrong while submitting. Please try again.";
-        submitButton.disabled = false;
-        submitButton.textContent = originalText;
-      }
+      // 2. SEND TO GOOGLE SHEETS IN THE BACKGROUND
+      fetch(regForm.action, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      })
+      .then(() => {
+        // 3. Refresh live count in background
+        setTimeout(fetchLiveRegistrations, 2000);
+      })
+      .catch((error) => {
+        console.error("Background save error:", error);
+      });
     });
   </script>
 </body>
