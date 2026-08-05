@@ -1181,7 +1181,7 @@
                 <span>Completely Free</span>
               </div>
               <div class="stat">
-                <strong id="liveRegistrations">56/100</strong>
+                <strong id="liveRegistrations">56+</strong>
                 <span>Live Registrations</span>
               </div>
               <div class="stat">
@@ -1747,19 +1747,17 @@
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener("click", () => {
-        const isOpen = navLinks.classList.toggle("open");
-        menuToggle.setAttribute("aria-expanded", isOpen);
-      });
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+    });
 
-      navLinks.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-        });
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
       });
-    }
+    });
 
     /* =========================================
        SCROLL REVEAL ANIMATIONS
@@ -1821,19 +1819,15 @@
         const data = await response.json();
 
         if (data && typeof data.totalRegistrations !== "undefined") {
-          // Displays format as: 56/100
-          statElement.textContent = data.totalRegistrations + "/100";
+          statElement.textContent = data.totalRegistrations + "+";
         }
       } catch (error) {
         console.error("Could not fetch live count, showing fallback value:", error);
       }
     }
 
-    // 1. Fetch count immediately on page load
+    // Run fetch on load
     document.addEventListener("DOMContentLoaded", fetchLiveRegistrations);
-
-    // 2. Refresh count automatically every 5 seconds
-    setInterval(fetchLiveRegistrations, 5000);
 
     /* =========================================
        FAST SUBMIT FORM TO GOOGLE SHEETS
@@ -1841,38 +1835,37 @@
     const regForm = document.getElementById("regForm");
     const successMsg = document.getElementById("successMsg");
 
-    if (regForm) {
-      regForm.addEventListener("submit", (event) => {
-        event.preventDefault();
+    regForm.addEventListener("submit", (event) => {
+      event.preventDefault();
 
-        const submitButton = regForm.querySelector('button[type="submit"]');
+      const submitButton = regForm.querySelector('button[type="submit"]');
 
-        // Instant UI feedback
-        submitButton.disabled = true;
-        submitButton.textContent = "Registration Complete ✓";
-        
-        successMsg.textContent = "Registration submitted successfully! Your seat is reserved.";
-        successMsg.classList.remove("error-msg");
-        successMsg.classList.add("show");
+      // 1. INSTANT FEEDBACK (0ms delay)
+      submitButton.disabled = true;
+      submitButton.textContent = "Registration Complete ✓";
+      
+      successMsg.textContent = "Registration submitted successfully! Your seat is reserved.";
+      successMsg.classList.remove("error-msg");
+      successMsg.classList.add("show");
 
-        const formData = new FormData(regForm);
-        regForm.reset();
+      // Save form data before resetting
+      const formData = new FormData(regForm);
+      regForm.reset();
 
-        // Send to Google Sheets in background
-        fetch(regForm.action, {
-          method: "POST",
-          body: formData,
-          mode: "no-cors"
-        })
-        .then(() => {
-          // Refresh count 5 seconds after form submission
-          setTimeout(fetchLiveRegistrations, 5000);
-        })
-        .catch((error) => {
-          console.error("Background save error:", error);
-        });
+      // 2. SEND TO GOOGLE SHEETS IN THE BACKGROUND
+      fetch(regForm.action, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      })
+      .then(() => {
+        // 3. Refresh live count in background
+        setTimeout(fetchLiveRegistrations, 2000);
+      })
+      .catch((error) => {
+        console.error("Background save error:", error);
       });
-    }
+    });
   </script>
 </body>
 </html>
