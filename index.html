@@ -130,7 +130,7 @@
     }
 
     /* =========================================
-       HEADER & NAVIGATION (FIXED)
+       HEADER & NAVIGATION
     ========================================= */
     header {
       position: sticky;
@@ -142,28 +142,28 @@
     }
 
     .nav {
-      min-height: 76px;
+      min-height: 84px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 30px;
     }
 
-    /* Logo Fix: Prevent image spillover & white background artifacts */
+    /* Header Logo Sizing */
     .logo {
       display: inline-flex;
       align-items: center;
-      height: 40px;
-      max-width: 200px;
+      height: 54px;
+      max-width: 260px;
       overflow: hidden;
     }
 
-    .site-logo {
+    header .site-logo {
       height: 100%;
       width: auto;
-      max-height: 38px;
+      max-height: 52px;
       object-fit: contain;
-      mix-blend-mode: multiply; /* Blends logo background cleanly */
+      mix-blend-mode: multiply;
     }
 
     nav.links {
@@ -283,7 +283,6 @@
       transform: translateY(-2px);
     }
 
-    /* Hero Dashboard Card */
     .hero-card {
       background: var(--white);
       border: 1px solid var(--line);
@@ -950,6 +949,20 @@
       flex-wrap: wrap;
     }
 
+    /* Footer Specific Logo Sizing */
+    footer .logo {
+      height: 64px;
+      max-width: 300px;
+    }
+
+    footer .site-logo {
+      height: 100%;
+      width: auto;
+      max-height: 62px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
     .footer-links {
       display: flex;
       gap: 20px;
@@ -1030,7 +1043,7 @@
 
       nav.links {
         position: fixed;
-        top: 76px;
+        top: 84px;
         left: 0;
         right: 0;
         background: var(--paper);
@@ -1711,10 +1724,8 @@
        JAVASCRIPT
   ========================================= -->
   <script>
-    // Set Current Dynamic Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Mobile Menu Toggle
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -1730,7 +1741,6 @@
       });
     });
 
-    // Scroll Reveal Intersection Observer
     const revealElements = document.querySelectorAll(".reveal");
 
     if ("IntersectionObserver" in window) {
@@ -1748,7 +1758,6 @@
       revealElements.forEach(element => element.classList.add("show"));
     }
 
-    // Formspree Async Form Submission
     const form = document.getElementById("regForm");
     const successMsg = document.getElementById("successMsg");
 
@@ -1785,7 +1794,6 @@
       }
     });
 
-    // FAQ Accordion Toggle
     const faqQuestions = document.querySelectorAll(".faq-question");
 
     faqQuestions.forEach(question => {
@@ -1793,13 +1801,11 @@
         const faqItem = question.closest(".faq-item");
         const isActive = faqItem.classList.contains("active");
 
-        // Close all items
         document.querySelectorAll(".faq-item").forEach(item => {
           item.classList.remove("active");
           item.querySelector(".faq-question").setAttribute("aria-expanded", "false");
         });
 
-        // Toggle clicked item if closed
         if (!isActive) {
           faqItem.classList.add("active");
           question.setAttribute("aria-expanded", "true");
