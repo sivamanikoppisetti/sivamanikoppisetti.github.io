@@ -199,7 +199,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: %;
+      width: 100%;
       padding: 14px 20px;
       border-radius: 999px;
       font-size: 15px;
@@ -257,13 +257,13 @@
         </div>
 
         <div class="payment-box">
-          <div class="price">₹</div>
+          <div class="price">₹99</div>
           <div class="duration">30 Minutes Call</div>
 
-          <!-- Dynamic QR Code pointing directly to koppisetti.sivamani@ybl -->
+          <!-- Dynamic QR Code synchronized to ₹99 and koppisetti.sivamani@ybl -->
           <div class="qr-container">
             <img 
-              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dkoppisetti.sivamani%40ybl%26pn%3DSivamani%2520Koppisetti%26am%3D100%26cu%3DINR%26tn%3D30min%25201on1%2520Session" 
+              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dkoppisetti.sivamani%40ybl%26pn%3DSivamani%2520Koppisetti%26am%3D99%26cu%3DINR%26tn%3D30min%25201on1%2520Session" 
               alt="UPI QR Code for ₹99" 
             >
           </div>
@@ -272,7 +272,7 @@
             UPI: koppisetti.sivamani@ybl
           </div>
 
-          <!-- Mobile Direct Intent Link -->
+          <!-- Mobile Direct Intent Link synchronized to ₹99 -->
           <a 
             href="upi://pay?pa=koppisetti.sivamani@ybl&pn=Sivamani%20Koppisetti&am=99&cu=INR&tn=30min%201on1%20Session" 
             class="btn"
