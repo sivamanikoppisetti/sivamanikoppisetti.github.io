@@ -400,6 +400,14 @@
     </div>
   </section>
 
+  <!-- Journey Section -->
+  <section id="journey">
+    <div class="wrap">
+      <h2 class="section-title">My Journey</h2>
+      <p style="color: var(--muted); max-width: 700px;">From learning SQL and Power BI through self-study to working as a Reporting Analyst, I've mapped out the exact practical skills recruiters actually look for.</p>
+    </div>
+  </section>
+
   <!-- Course Plan Section -->
   <section id="course-plan">
     <div class="wrap">
@@ -481,17 +489,6 @@
     // Instant-load registration counter from localStorage
     const cachedRegs = localStorage.getItem('live_registrations') || '59';
     document.getElementById('regCounter').innerText = `${cachedRegs}/100`;
-
-    // Background fetch to sync backend count quietly
-    fetch('YOUR_GOOGLE_SHEET_ENDPOINT_URL')
-      .then(res => res.json())
-      .then(data => {
-        if(data && data.count) {
-          localStorage.setItem('live_registrations', data.count);
-          document.getElementById('regCounter').innerText = `${data.count}/100`;
-        }
-      })
-      .catch(() => {});
   </script>
 
 </body>
