@@ -340,7 +340,7 @@
               <div class="stat-lbl">Completely Free</div>
             </div>
             <div class="stat-box">
-              <div class="stat-val" id="regCounter">--/100</div>
+              <div class="stat-val" id="regCounter">59/100</div>
               <div class="stat-lbl">Live Registrations</div>
             </div>
             <div class="stat-box">
@@ -486,7 +486,6 @@
   </footer>
 
   <script>
-    // Instant-load registration counter from localStorage
     const cachedRegs = localStorage.getItem('live_registrations') || '59';
     document.getElementById('regCounter').innerText = `${cachedRegs}/100`;
   </script>
