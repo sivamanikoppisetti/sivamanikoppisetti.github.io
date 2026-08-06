@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sivamani Koppisetti | KoLogs</title>
+  <title>Sivamani Koppisetti</title>
   <meta name="description" content="Free weekend Data Analyst training by Sivamani Koppisetti covering Excel, SQL, Power BI, Looker Studio, BigQuery and AWS.">
 
   <!-- Favicon / Browser Tab Logo -->
@@ -1137,7 +1137,6 @@
         <a href="#roadmap">Roadmap</a>
         <a href="#journey">Journey</a>
         <a href="#course-plan">Course Plan</a>
-        <a href="gateway.html">1-on-1 Call</a>
         <a href="#faq">FAQ</a>
         <a href="#register" class="nav-cta">Reserve Your Seat</a>
       </nav>
@@ -1182,7 +1181,8 @@
                 <span>Completely Free</span>
               </div>
               <div class="stat">
-                <strong id="liveRegistrations">Fetching Data..</strong>
+                <!-- Direct 56/100 fallback (0ms loading lag) -->
+                <strong id="liveRegistrations">56/100</strong>
                 <span>Live Registrations</span>
               </div>
               <div class="stat">
@@ -1725,7 +1725,6 @@
         <div class="footer-links">
           <a href="https://www.linkedin.com/in/sivamani-koppisetti-dataanalyst/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:sivamanikoppisetti2002@gmail.com">Email</a>
-          <a href="gateway.html">1-on-1 Call</a>
           <a href="#register">Register</a>
           <a href="#faq">FAQ</a>
         </div>
@@ -1749,17 +1748,19 @@
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", isOpen);
-    });
-
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", isOpen);
       });
-    });
+
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
 
     /* =========================================
        SCROLL REVEAL ANIMATIONS
@@ -1810,7 +1811,12 @@
 
     async function fetchLiveRegistrations() {
       const statElement = document.getElementById("liveRegistrations");
-      if (!statElement) return;
+      
+      // Load from LocalStorage immediately if present
+      const cachedCount = localStorage.getItem("lastRegistrationCount");
+      if (statElement && cachedCount) {
+        statElement.textContent = cachedCount + "/100";
+      }
 
       try {
         const response = await fetch(APPS_SCRIPT_URL, {
@@ -1820,16 +1826,21 @@
 
         const data = await response.json();
 
-        if (data && typeof data.totalRegistrations !== "undefined") {
+        if (statElement && data && typeof data.totalRegistrations !== "undefined") {
+          // Save latest count to storage & update UI seamlessly
+          localStorage.setItem("lastRegistrationCount", data.totalRegistrations);
           statElement.textContent = data.totalRegistrations + "/100";
         }
       } catch (error) {
-        console.error("Could not fetch live count, showing fallback value:", error);
+        console.error("Could not fetch live count, keeping fallback value:", error);
       }
     }
 
-    // Run fetch on load
-    document.addEventListener("DOMContentLoaded", fetchLiveRegistrations);
+    // 1. Fire request immediately without waiting for DOMContentLoaded
+    fetchLiveRegistrations();
+
+    // 2. Refresh count automatically every 5 seconds
+    setInterval(fetchLiveRegistrations, 5000);
 
     /* =========================================
        FAST SUBMIT FORM TO GOOGLE SHEETS
@@ -1837,37 +1848,38 @@
     const regForm = document.getElementById("regForm");
     const successMsg = document.getElementById("successMsg");
 
-    regForm.addEventListener("submit", (event) => {
-      event.preventDefault();
+    if (regForm) {
+      regForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-      const submitButton = regForm.querySelector('button[type="submit"]');
+        const submitButton = regForm.querySelector('button[type="submit"]');
 
-      // 1. INSTANT FEEDBACK
-      submitButton.disabled = true;
-      submitButton.textContent = "Registration Complete ✓";
-      
-      successMsg.textContent = "Registration submitted successfully! Your seat is reserved.";
-      successMsg.classList.remove("error-msg");
-      successMsg.classList.add("show");
+        // Instant UI feedback
+        submitButton.disabled = true;
+        submitButton.textContent = "Registration Complete ✓";
+        
+        successMsg.textContent = "Registration submitted successfully! Your seat is reserved.";
+        successMsg.classList.remove("error-msg");
+        successMsg.classList.add("show");
 
-      // Save form data before resetting
-      const formData = new FormData(regForm);
-      regForm.reset();
+        const formData = new FormData(regForm);
+        regForm.reset();
 
-      // 2. SEND TO GOOGLE SHEETS IN THE BACKGROUND
-      fetch(regForm.action, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors"
-      })
-      .then(() => {
-        // 3. Refresh live count in background
-        setTimeout(fetchLiveRegistrations, 2000);
-      })
-      .catch((error) => {
-        console.error("Background save error:", error);
+        // Send to Google Sheets in background
+        fetch(regForm.action, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+        })
+        .then(() => {
+          // Refresh count 5 seconds after form submission
+          setTimeout(fetchLiveRegistrations, 5000);
+        })
+        .catch((error) => {
+          console.error("Background save error:", error);
+        });
       });
-    });
+    }
   </script>
 </body>
 </html>
