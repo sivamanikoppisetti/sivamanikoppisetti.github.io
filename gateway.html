@@ -184,11 +184,22 @@
       margin: 0 auto;
     }
 
+    .upi-id-display {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--paper);
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      word-break: break-all;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      width: %;
       padding: 14px 20px;
       border-radius: 999px;
       font-size: 15px;
@@ -246,26 +257,30 @@
         </div>
 
         <div class="payment-box">
-          <div class="price">₹100</div>
+          <div class="price">₹</div>
           <div class="duration">30 Minutes Call</div>
 
-          <!-- Dynamic QR Code generated via API (Replace your-upi-id@upi below) -->
+          <!-- Dynamic QR Code pointing directly to koppisetti.sivamani@ybl -->
           <div class="qr-container">
             <img 
-              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dyour-upi-id%40upi%26pn%3DSivamani%2520Koppisetti%26am%3D100%26cu%3DINR%26tn%3D30min%25201on1%2520Session" 
-              alt="UPI QR Code for ₹100" 
+              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dkoppisetti.sivamani%40ybl%26pn%3DSivamani%2520Koppisetti%26am%3D100%26cu%3DINR%26tn%3D30min%25201on1%2520Session" 
+              alt="UPI QR Code for ₹99" 
             >
           </div>
 
-          <!-- Mobile Direct UPI Intent Link (Replace your-upi-id@upi below) -->
+          <div class="upi-id-display">
+            UPI: koppisetti.sivamani@ybl
+          </div>
+
+          <!-- Mobile Direct Intent Link -->
           <a 
-            href="upi://pay?pa=your-upi-id@upi&pn=Sivamani%20Koppisetti&am=100&cu=INR&tn=30min%201on1%20Session" 
+            href="upi://pay?pa=koppisetti.sivamani@ybl&pn=Sivamani%20Koppisetti&am=99&cu=INR&tn=30min%201on1%20Session" 
             class="btn"
           >
-            Pay via UPI App (₹100) →
+            Pay via UPI App (₹99) →
           </a>
 
-          <p class="note">Scan QR code on Desktop or tap button on Mobile to pay via GPay / PhonePe / Paytm.</p>
+          <p class="note">Scan QR code on Desktop or tap button on Mobile to pay via PhonePe / GPay / Paytm.</p>
         </div>
       </div>
     </div>
