@@ -1014,6 +1014,26 @@
        RESPONSIVE BREAKPOINTS
     ========================================= */
     @media (max-width: 900px) {
+  nav.links {
+    position: fixed;
+    top: 84px;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    padding: 25px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px; /* Added spacing between menu items */
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-140%);
+    transition: transform 0.25s ease;
+  }
+
+  nav.links.open {
+    transform: translateY(0);
+  }
+}
+    @media (max-width: 900px) {
       .hero-grid,
       .about-grid,
       .register-grid {
@@ -1139,6 +1159,7 @@
         <a href="#course-plan">Course Plan</a>
         <a href="#faq">FAQ</a>
         <a href="https://kologs.com/gateway.html">1-on-1</a>
+        <a href="https://whatsapp.com/channel/0029Vb8ZNj4DjiOZx6lE1c0t" target="_blank" rel="noopener">WhatsApp Channel</a>
         <a href="#register" class="nav-cta">Reserve Your Seat</a>
       </nav>
 
