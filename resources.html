@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session Setup & Resources | KoLogs</title>
+  <meta name="description" content="Free setup guides and resources for Data Analytics training sessions covering Google Sheets, BigQuery, Looker Studio, and Power BI.">
+
+  <!-- Favicon / Browser Tab Logo -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       ROOT VARIABLES
+    ========================================= */
+    :root {
+      --ink: #17201d;
+      --paper: #f7f7f3;
+      --white: #ffffff;
+      --green: #176b5d;
+      --green-dark: #0f5147;
+      --green-light: #e4f0ed;
+      --yellow: #f1b84b;
+      --yellow-light: #fff8e6;
+      --muted: #66706c;
+      --line: #dfe3dc;
+      --shadow: 0 20px 50px rgba(20, 35, 30, 0.08);
+      --heading: "Manrope", sans-serif;
+      --body: "DM Sans", sans-serif;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* =========================================
+       HEADER & NAVIGATION
+    ========================================= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 247, 243, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo-text {
+      display: inline-flex;
+      align-items: baseline;
+      font-family: var(--heading);
+      font-weight: 800;
+      font-size: 42px;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .logo-text .logo-green { color: var(--green); }
+    .logo-text .logo-sub { font-size: 20px; font-weight: 700; color: var(--ink); margin-left: 1px; }
+
+    nav.links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    nav.links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      opacity: 0.75;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    nav.links a:hover { opacity: 1; color: var(--green); }
+
+    .nav-cta {
+      background: var(--ink);
+      color: var(--white) !important;
+      padding: 10px 20px;
+      border-radius: 999px;
+      opacity: 1 !important;
+      transition: background 0.2s ease, transform 0.2s ease !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--green) !important;
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* =========================================
+       HERO / INTRO SECTION
+    ========================================= */
+    .hero-resources {
+      padding: 70px 0 40px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+
+    .hero-resources h1 {
+      font-family: var(--heading);
+      font-size: clamp(34px, 4vw, 52px);
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+    }
+
+    .hero-resources p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* Quick Jumper Navigation */
+    .tool-jumpers {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .jumper-btn {
+      padding: 10px 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      transition: all 0.2s ease;
+    }
+
+    .jumper-btn:hover {
+      border-color: var(--green);
+      color: var(--green);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================
+       RESOURCE CARDS GRID
+    ========================================= */
+    .resources-section {
+      padding: 40px 0 90px;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border: 1.5px solid var(--line);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .card-head img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 12px;
+      padding: 6px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+    }
+
+    .card-head h2 {
+      font-family: var(--heading);
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .card-desc {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .setup-steps {
+      margin: 0 0 24px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .setup-steps li {
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--ink);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .step-num {
+      flex: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--green-light);
+      color: var(--green);
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-action:hover {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    footer {
+      padding: 45px 0;
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--green); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      margin-top: 28px;
+      padding-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .resources-grid { grid-template-columns: 1fr; }
+
+      nav.links {
+        position: fixed;
+        top: 84px;
+        left: 0;
+        right: 0;
+        background: var(--paper);
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        border-bottom: 1px solid var(--line);
+        transform: translateY(-140%);
+        transition: transform 0.25s ease;
+      }
+
+      nav.links.open { transform: translateY(0); }
+      .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       HEADER
+  ========================================= -->
+  <header>
+    <div class="wrap nav">
+      <a href="index.html" class="logo-text" aria-label="KoLogs Homepage">
+        Ko<span class="logo-green">Logs</span><span class="logo-sub">.com</span>
+      </a>
+
+      <nav class="links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#roadmap">Roadmap</a>
+        <a href="index.html#journey">Journey</a>
+        <a href="index.html#course-plan">Course Plan</a>
+        <a href="resources.html">Resources</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="gateway.html">1-on-1</a>
+        <a href="https://whatsapp.com/channel/0029Vb8ZNj4DjiOZx6lE1c0t" target="_blank" rel="noopener">WhatsApp Channel</a>
+        <a href="index.html#register" class="nav-cta">Reserve Your Seat</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================
+         HERO SECTION
+    ========================================= -->
+    <section class="hero-resources">
+      <div class="wrap">
+        <p class="eyebrow">Session Setup & Tools</p>
+        <h1>Everything you need for upcoming sessions.</h1>
+        <p>Follow these step-by-step setup guides to configure your free accounts and software tools before joining our live Data Analytics classes.</p>
+
+        <div class="tool-jumpers">
+          <a href="#sheets" class="jumper-btn">Google Sheets</a>
+          <a href="#bigquery" class="jumper-btn">BigQuery (GCP)</a>
+          <a href="#looker" class="jumper-btn">Looker Studio</a>
+          <a href="#powerbi" class="jumper-btn">Power BI</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+         RESOURCES GRID
+    ========================================= -->
+    <section class="resources-section">
+      <div class="wrap">
+        <div class="resources-grid">
+
+          <!-- CARD 1: GOOGLE SHEETS -->
+          <div class="resource-card" id="sheets">
+            <div>
+              <div class="card-head">
+                <img src="excel.png" alt="Google Sheets & Excel">
+                <h2>Google Sheets</h2>
+              </div>
+              <p class="card-desc">Used for rapid data cleaning, pivot tables, lookup formulas, and business calculations in our foundational sessions.</p>
+              
+              <ul class="setup-steps">
+                <li>
+                  <span class="step-num">1</span>
+                  <span>Sign in with any personal Google / Gmail account.</span>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <span>No software installation required — works 100% free in your browser.</span>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <span>Ensure access to Google Drive to download session practice CSV files.</span>
+                </li>
+              </ul>
+            </div>
+            <a href="https://sheets.google.com" target="_blank" rel="noopener" class="btn-action">Open Google Sheets →</a>
+          </div>
+
+          <!-- CARD 2: BIGQUERY -->
+          <div class="resource-card" id="bigquery">
+            <div>
+              <div class="card-head">
+                <img src="cloud.png" alt="Google Cloud BigQuery">
+                <h2>Google BigQuery</h2>
+              </div>
+              <p class="card-desc">Google Cloud's enterprise data warehouse. We use the 100% Free Sandbox tier (no credit card required) for SQL querying.</p>
+              
+              <ul class="setup-steps">
+                <li>
+                  <span class="step-num">1</span>
+                  <span>Go to Google Cloud Console and navigate to BigQuery.</span>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <span>Create a new GCP Project (e.g., <code>kologs-data-analytics</code>).</span>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <span>Enable BigQuery Sandbox (gives 10 GB free storage & 1 TB free query analysis per month).</span>
+                </li>
+              </ul>
+            </div>
+            <a href="https://console.cloud.google.com/bigquery" target="_blank" rel="noopener" class="btn-action">Setup BigQuery Free Sandbox →</a>
+          </div>
+
+          <!-- CARD 3: LOOKER STUDIO -->
+          <div class="resource-card" id="looker">
+            <div>
+              <div class="card-head">
+                <img src="data-analytics.png" alt="Looker Studio">
+                <h2>Looker Studio</h2>
+              </div>
+              <p class="card-desc">Google's free web-based BI tool for building interactive live dashboards connected directly to Sheets or BigQuery.</p>
+              
+              <ul class="setup-steps">
+                <li>
+                  <span class="step-num">1</span>
+                  <span>Open Looker Studio with your Google account.</span>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <span>Complete the one-time welcome setup & accept terms.</span>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <span>Practice creating a blank report and linking a sample Google Sheet dataset.</span>
+                </li>
+              </ul>
+            </div>
+            <a href="https://lookerstudio.google.com" target="_blank" rel="noopener" class="btn-action">Launch Looker Studio →</a>
+          </div>
+
+          <!-- CARD 4: POWER BI -->
+          <div class="resource-card" id="powerbi">
+            <div>
+              <div class="card-head">
+                <img src="power-bi.png" alt="Microsoft Power BI">
+                <h2>Power BI Desktop</h2>
+              </div>
+              <p class="card-desc">Microsoft's flagship business intelligence application for end-to-end data modeling, DAX, and report creation.</p>
+              
+              <ul class="setup-steps">
+                <li>
+                  <span class="step-num">1</span>
+                  <span>Power BI Desktop is 100% FREE for Windows users.</span>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <span>Download directly from Microsoft Store or official site.</span>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <span><em>Mac Users:</em> Can follow along during live sessions or run Windows via Parallels / virtual desktop.</span>
+                </li>
+              </ul>
+            </div>
+            <a href="https://powerbi.microsoft.com/desktop/" target="_blank" rel="noopener" class="btn-action">Download Power BI Desktop →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================
+       FOOTER
+  ========================================= -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <a href="index.html" class="logo-text" aria-label="KoLogs Footer Logo">
+          Ko<span class="logo-green">Logs</span><span class="logo-sub">.com</span>
+        </a>
+
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/sivamani-koppisetti-dataanalyst/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://whatsapp.com/channel/0029Vb8ZNj4DjiOZx6lE1c0t" target="_blank" rel="noopener">WhatsApp Channel</a>
+          <a href="mailto:sivamanikoppisetti2002@gmail.com">Email</a>
+          <a href="resources.html">Resources</a>
+          <a href="gateway.html">1-on-1</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © <span id="year"></span> Sivamani Koppisetti. Built for the Weekend Data Analyst Lab community.
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================= -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", isOpen);
+      });
+
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  </script>
+</body>
+</html>
