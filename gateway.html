@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book 1-on-1 Call | KoLogs</title>
+  <title>3-Month Data Analyst Mentorship Program | KoLogs</title>
   <link rel="icon" type="image/png" href="favicon.png">
 
   <!-- Google Fonts -->
@@ -20,6 +20,7 @@
       --green-dark: #0f5147;
       --green-light: #e4f0ed;
       --yellow: #f1b84b;
+      --yellow-light: #fff8e6;
       --muted: #66706c;
       --line: #dfe3dc;
       --shadow: 0 20px 50px rgba(20, 35, 30, 0.08);
@@ -46,7 +47,7 @@
     }
 
     .wrap {
-      width: min(1000px, calc(100% - 48px));
+      width: min(1080px, calc(100% - 48px));
       margin: 0 auto;
     }
 
@@ -91,9 +92,9 @@
       border-radius: 24px;
       padding: 48px;
       display: grid;
-      grid-template-columns: 1fr 340px;
+      grid-template-columns: 1fr 400px;
       gap: 48px;
-      align-items: center;
+      align-items: start;
       box-shadow: var(--shadow);
     }
 
@@ -119,30 +120,104 @@
 
     .gateway-info h1 {
       font-family: var(--heading);
-      font-size: clamp(28px, 4vw, 38px);
+      font-size: clamp(28px, 4vw, 36px);
       margin: 0 0 16px;
       line-height: 1.2;
     }
 
-    .gateway-info p {
+    .gateway-info p.lead {
       color: var(--muted);
       font-size: 16px;
       line-height: 1.6;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-subtitle {
+      font-family: var(--heading);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink);
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .benefit-check {
+      flex: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--green-light);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .value-stack {
+      background: var(--yellow-light);
+      border: 1.5px solid var(--yellow);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+
+    .value-stack h3 {
+      font-family: var(--heading);
+      font-size: 16px;
+      margin: 0 0 12px;
+      color: var(--green-dark);
+    }
+
+    .value-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 6px 0;
+      border-bottom: 1px dashed #e6c587;
+      color: var(--ink);
+    }
+
+    .value-row:last-child {
+      border-bottom: none;
+    }
+
+    .value-row span.strike {
+      text-decoration: line-through;
+      color: var(--muted);
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .tags span {
       background: var(--green-light);
       color: var(--green-dark);
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 999px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
     }
 
@@ -150,48 +225,59 @@
       background: #fbfbf8;
       border: 1.5px solid var(--line);
       border-radius: 18px;
-      padding: 28px;
+      padding: 24px;
       text-align: center;
+      position: sticky;
+      top: 100px;
+    }
+
+    .price-strike {
+      text-decoration: line-through;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 600;
     }
 
     .price {
       font-family: var(--heading);
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 800;
       color: var(--green);
       margin-bottom: 2px;
+      line-height: 1;
     }
 
     .duration {
       color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 20px;
+      font-size: 13px;
+      margin-bottom: 16px;
+      font-weight: 600;
     }
 
     .qr-container {
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 16px;
+      padding: 10px;
+      margin-bottom: 12px;
       display: inline-block;
     }
 
     .qr-container img {
-      width: 170px;
-      height: 170px;
+      width: 160px;
+      height: 160px;
       display: block;
       margin: 0 auto;
     }
 
     .upi-id-display {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--ink);
       background: var(--paper);
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       word-break: break-all;
     }
 
@@ -200,14 +286,16 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      padding: 14px 20px;
+      padding: 12px 18px;
       border-radius: 999px;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       background: var(--ink);
       color: var(--white);
       text-decoration: none;
       transition: background 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -215,17 +303,72 @@
       transform: translateY(-2px);
     }
 
-    .note {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 12px;
+    .payment-form {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1.5px dashed var(--line);
+      text-align: left;
     }
 
-    @media (max-width: 820px) {
+    .payment-form h3 {
+      font-size: 15px;
+      font-family: var(--heading);
+      margin: 0 0 10px;
+      text-align: center;
+    }
+
+    .field {
+      margin-bottom: 10px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: var(--body);
+      background: var(--white);
+    }
+
+    .btn-confirm {
+      background: var(--green);
+      color: var(--white);
+      margin-top: 4px;
+    }
+
+    .btn-confirm:hover {
+      background: var(--green-dark);
+    }
+
+    .confirm-msg {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      border-radius: 8px;
+      font-size: 12px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
       .gateway-card {
         grid-template-columns: 1fr;
-        padding: 30px;
+        padding: 28px;
         gap: 32px;
+      }
+      .payment-box {
+        position: static;
       }
     }
   </style>
@@ -245,26 +388,111 @@
     <div class="wrap">
       <div class="gateway-card">
         <div class="gateway-info">
-          <p class="eyebrow">1-on-1 Consultation</p>
-          <h1>Book a Private 30-Min Session</h1>
-          <p>Get direct, personalized support on your Data Analytics career roadmap, code/dashboard debugging, resume review, or mock technical interviews.</p>
+          <p class="eyebrow">All-In-One Career Accelerator</p>
+          <h1>3-Month Data Analyst Masterclass & Job Prep</h1>
+          <p class="lead">An intensive, end-to-end cohort designed to take you from core fundamentals to job-ready with live classes, real enterprise projects, ATS resume templates, and direct referrals.</p>
+          
+          <!-- Value Stack Overview -->
+          <div class="value-stack">
+            <h3>🎁 What's Included Inside (Total Value: ₹15,500+)</h3>
+            <div class="value-row">
+              <span>Extended Live Bootcamp (Sat, Wed, Sun)</span>
+              <span class="strike">₹5,000</span>
+            </div>
+            <div class="value-row">
+              <span>3 Enterprise-Grade Portfolio Projects</span>
+              <span class="strike">₹3,000</span>
+            </div>
+            <div class="value-row">
+              <span>ATS-Optimized Resume Templates & Prep Suite</span>
+              <span class="strike">₹2,500</span>
+            </div>
+            <div class="value-row">
+              <span>100+ SQL & DAX Interview Questions Bank</span>
+              <span class="strike">₹2,000</span>
+            </div>
+            <div class="value-row">
+              <span>1-on-1 Personal Mentorship & Mock Interviews</span>
+              <span class="strike">₹2,000</span>
+            </div>
+            <div class="value-row">
+              <span>Direct Job Referrals & Completion Certificate</span>
+              <span class="strike">₹1,000</span>
+            </div>
+          </div>
+
+          <!-- Section 1: Live Classes & Mentorship -->
+          <div class="section-subtitle">⚡ 1. Live Training & Mentorship</div>
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>4-Hour Live Intensive Sessions:</strong> Held every <strong>Saturday, Wednesday, and Sunday</strong> to build deep, practical problem-solving speed.</div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>1-on-1 Dedicated Mentorship:</strong> Personal calls to review your progress, clear specific code bugs, and define your individual job roadmap.</div>
+            </div>
+          </div>
+
+          <!-- Section 2: Real-World Portfolio Projects -->
+          <div class="section-subtitle">📂 2. Production Real-World Projects</div>
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>E-Commerce SQL Analytics:</strong> Querying raw sales, customer retention, churn metrics, and revenue aggregations.</div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>Power BI Executive Dashboard:</strong> End-to-end data modeling, DAX measures, and interactive KPI design.</div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>Google BigQuery ETL Pipeline:</strong> Handling high-volume cloud datasets and connecting them directly to Looker Studio.</div>
+            </div>
+          </div>
+
+          <!-- Section 3: Resume & Interview Suite -->
+          <div class="section-subtitle">📄 3. ATS Resume Suite & Job Preparation</div>
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>ATS-Optimized Resume Templates:</strong> Pre-formatted, recruiter-tested layouts engineered to pass automated screening filters.</div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>High-Impact Bullet Formulas:</strong> Learn how to structure your resume bullet points using metric-driven action verbs that impress hiring managers.</div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>Mock Technical Interviews:</strong> Live practice rounds covering complex SQL joins, window functions, and business DAX scenarios.</div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-check">✓</div>
+              <div><strong>Job Referrals & Certificate:</strong> Get referred to open analyst roles through network connections and earn an verified certificate.</div>
+            </div>
+          </div>
+
           <div class="tags">
-            <span>Resume Review</span>
-            <span>Career Guidance</span>
-            <span>SQL / Power BI Help</span>
-            <span>Mock Technical Interview</span>
+            <span>3 Months Access</span>
+            <span>Real Projects</span>
+            <span>ATS Resume Suite</span>
+            <span>Mock Interviews</span>
+            <span>Referrals</span>
+            <span>Certificate</span>
           </div>
         </div>
 
+        <!-- Right Side Sticky Payment Box -->
         <div class="payment-box">
-          <div class="price">₹99</div>
-          <div class="duration">30 Minutes Call</div>
+          <div class="price-strike">₹15,500</div>
+          <div class="price">₹1,999</div>
+          <div class="duration">Complete 3-Month Program (One-Time)</div>
 
-          <!-- Dynamic QR Code synchronized to ₹99 and koppisetti.sivamani@ybl -->
+          <!-- QR Code synchronized to ₹1999 -->
           <div class="qr-container">
             <img 
-              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dkoppisetti.sivamani%40ybl%26pn%3DSivamani%2520Koppisetti%26am%3D99%26cu%3DINR%26tn%3D30min%25201on1%2520Session" 
-              alt="UPI QR Code for ₹99" 
+              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dkoppisetti.sivamani%40ybl%26pn%3DSivamani%2520Koppisetti%26am%3D1999%26cu%3DINR%26tn%3D3Month%2520Data%2520Analyst%2520Program" 
+              alt="UPI QR Code for ₹1999" 
             >
           </div>
 
@@ -274,17 +502,80 @@
 
           <!-- Mobile Direct Intent Link -->
           <a 
-            href="upi://pay?pa=koppisetti.sivamani@ybl&pn=Sivamani%20Koppisetti&am=99&cu=INR&tn=30min%201on1%20Session" 
+            href="upi://pay?pa=koppisetti.sivamani@ybl&pn=Sivamani%20Koppisetti&am=1999&cu=INR&tn=3Month%20Data%20Analyst%20Program" 
             class="btn"
           >
-            Pay via UPI App (₹99) →
+            Pay via UPI App (₹1,999) →
           </a>
 
-          <p class="note">Scan QR code on Desktop or tap button on Mobile to pay via PhonePe / GPay / Paytm.</p>
+          <!-- DEDICATED PAID ENROLLMENTS FORM -->
+          <form class="payment-form" id="payDetailsForm" action="https://script.google.com/macros/s/AKfycbwOXemxSTICNoJx7DzwhC--tHEwFMNreb5RWto7WyzHzTsn8CI4zDfBx0IFTIl2LJEPfQ/exec" method="POST">
+            <h3>Submit Payment Details</h3>
+
+            <div class="field">
+              <label for="pname">Your Full Name</label>
+              <input type="text" id="pname" name="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="field">
+              <label for="pemail">Email Address</label>
+              <input type="email" id="pemail" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="field">
+              <label for="pphone">Phone Number</label>
+              <input type="tel" id="pphone" name="phone" placeholder="+91 00000 00000" required>
+            </div>
+
+            <div class="field">
+              <label for="ptxn">UPI Transaction ID / UTR</label>
+              <input type="text" id="ptxn" name="txn_id" placeholder="12-digit Ref / UTR No" required>
+            </div>
+
+            <button type="submit" class="btn btn-confirm">Confirm Enrollment ✓</button>
+
+            <div class="confirm-msg" id="confirmMsg">
+              Enrollment details submitted! Sivamani will verify your payment and email your onboarding kit shortly.
+            </div>
+          </form>
+
         </div>
       </div>
     </div>
   </main>
+
+  <script>
+    const payForm = document.getElementById("payDetailsForm");
+    const confirmMsg = document.getElementById("confirmMsg");
+
+    if (payForm) {
+      payForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const btn = payForm.querySelector('button[type="submit"]');
+
+        btn.disabled = true;
+        btn.textContent = "Submitting Details...";
+
+        const formData = new FormData(payForm);
+
+        fetch(payForm.action, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+        })
+        .then(() => {
+          btn.textContent = "Enrollment Confirmed ✓";
+          confirmMsg.style.display = "block";
+          payForm.reset();
+        })
+        .catch((err) => {
+          console.error("Payment save error:", err);
+          btn.disabled = false;
+          btn.textContent = "Confirm Enrollment ✓";
+        });
+      });
+    }
+  </script>
 
 </body>
 </html>
