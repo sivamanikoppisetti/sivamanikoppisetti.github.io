@@ -275,10 +275,16 @@
       font-weight: 700;
       color: var(--ink);
       background: var(--paper);
-      padding: 6px 10px;
+      padding: 8px 12px;
       border-radius: 8px;
       margin-bottom: 12px;
       word-break: break-all;
+      border: 1px solid var(--line);
+      transition: background 0.2s;
+    }
+
+    .upi-id-display:hover {
+      background: var(--green-light);
     }
 
     .btn {
@@ -394,7 +400,7 @@
           
           <!-- Value Stack Overview -->
           <div class="value-stack">
-            <h3>🎁 What's Included Inside</h3>
+            <h3>🎁 What's Included Inside (Total Value: ₹15,500+)</h3>
             <div class="value-row">
               <span>Extended Live Bootcamp (Sat, Wed, Sun)</span>
               <span class="strike">₹5,000</span>
@@ -488,25 +494,30 @@
           <div class="price">₹1,999</div>
           <div class="duration">Complete 3-Month Program (One-Time)</div>
 
-          <!-- QR Code synchronized to ₹1999 -->
+          <!-- Clean QR Code for ₹1999 -->
           <div class="qr-container">
             <img 
-              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dkoppisetti.sivamani%40ybl%26pn%3DSivamani%2520Koppisetti%26am%3D1999%26cu%3DINR%26tn%3D3Month%2520Data%2520Analyst%2520Program" 
+              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dkoppisetti.sivamani%40ybl%26pn%3DKOPPISETTI%2520SIVAMANI%26am%3D1999%26cu%3DINR" 
               alt="UPI QR Code for ₹1999" 
             >
           </div>
 
-          <div class="upi-id-display">
-            UPI: koppisetti.sivamani@ybl
+          <!-- One-Click Copyable UPI ID -->
+          <div class="upi-id-display" onclick="copyUpiId()" style="cursor: pointer;" title="Click to copy UPI ID">
+            <span id="upiText">koppisetti.sivamani@ybl</span> 📋
           </div>
 
-          <!-- Mobile Direct Intent Link -->
+          <!-- Clean Mobile Direct Link (Without restrictive note parameters) -->
           <a 
-            href="upi://pay?pa=koppisetti.sivamani@ybl&pn=Sivamani%20Koppisetti&am=1999&cu=INR&tn=3Month%20Data%20Analyst%20Program" 
+            href="upi://pay?pa=koppisetti.sivamani@ybl&pn=KOPPISETTI%20SIVAMANI&am=1999&cu=INR" 
             class="btn"
           >
             Pay via UPI App (₹1,999) →
           </a>
+
+          <p style="font-size: 11px; color: var(--muted); margin-top: 8px;">
+            If UPI app blocks the link: Scan QR code or tap above to copy UPI ID directly into GPay/PhonePe.
+          </p>
 
           <!-- DEDICATED PAID ENROLLMENTS FORM -->
           <form class="payment-form" id="payDetailsForm" action="https://script.google.com/macros/s/AKfycbwOXemxSTICNoJx7DzwhC--tHEwFMNreb5RWto7WyzHzTsn8CI4zDfBx0IFTIl2LJEPfQ/exec" method="POST">
@@ -545,6 +556,19 @@
   </main>
 
   <script>
+    // Copy UPI ID Script
+    function copyUpiId() {
+      const upi = "koppisetti.sivamani@ybl";
+      navigator.clipboard.writeText(upi).then(() => {
+        const display = document.getElementById("upiText");
+        display.innerHTML = "Copied to Clipboard! ✓";
+        setTimeout(() => {
+          display.innerHTML = upi;
+        }, 2000);
+      });
+    }
+
+    // Fast Submit Form Script
     const payForm = document.getElementById("payDetailsForm");
     const confirmMsg = document.getElementById("confirmMsg");
 
