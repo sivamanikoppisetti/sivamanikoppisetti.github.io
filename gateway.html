@@ -47,7 +47,7 @@
     }
 
     .wrap {
-      width: min(1080px, calc(100% - 48px));
+      width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
     }
 
@@ -81,7 +81,7 @@
 
     main {
       flex: 1;
-      padding: 60px 0;
+      padding: 50px 0 80px;
       display: flex;
       align-items: center;
     }
@@ -90,10 +90,10 @@
       background: var(--white);
       border: 1.5px solid var(--line);
       border-radius: 24px;
-      padding: 48px;
+      padding: 40px;
       display: grid;
-      grid-template-columns: 1fr 400px;
-      gap: 48px;
+      grid-template-columns: 1fr 360px;
+      gap: 36px;
       align-items: start;
       box-shadow: var(--shadow);
     }
@@ -120,24 +120,24 @@
 
     .gateway-info h1 {
       font-family: var(--heading);
-      font-size: clamp(28px, 4vw, 36px);
+      font-size: clamp(26px, 3.5vw, 36px);
       margin: 0 0 16px;
       line-height: 1.2;
     }
 
     .gateway-info p.lead {
       color: var(--muted);
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.6;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .section-subtitle {
       font-family: var(--heading);
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       color: var(--ink);
-      margin: 24px 0 14px;
+      margin: 24px 0 12px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -147,7 +147,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .benefit-item {
@@ -183,7 +183,7 @@
 
     .value-stack h3 {
       font-family: var(--heading);
-      font-size: 16px;
+      font-size: 15px;
       margin: 0 0 12px;
       color: var(--green-dark);
     }
@@ -191,6 +191,8 @@
     .value-row {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 12px;
       font-size: 13px;
       padding: 6px 0;
       border-bottom: 1px dashed #e6c587;
@@ -204,12 +206,14 @@
     .value-row span.strike {
       text-decoration: line-through;
       color: var(--muted);
+      white-space: nowrap;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-top: 24px;
     }
 
     .tags span {
@@ -221,11 +225,12 @@
       font-weight: 700;
     }
 
+    /* Right Side Payment Box */
     .payment-box {
       background: #fbfbf8;
       border: 1.5px solid var(--line);
       border-radius: 18px;
-      padding: 32px 24px;
+      padding: 28px 20px;
       text-align: center;
       position: sticky;
       top: 100px;
@@ -234,13 +239,13 @@
     .price-strike {
       text-decoration: line-through;
       color: var(--muted);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
     }
 
     .price {
       font-family: var(--heading);
-      font-size: 44px;
+      font-size: 42px;
       font-weight: 800;
       color: var(--green);
       margin-bottom: 2px;
@@ -250,7 +255,7 @@
     .duration {
       color: var(--muted);
       font-size: 13px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       font-weight: 600;
     }
 
@@ -259,7 +264,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      padding: 16px 20px;
+      padding: 15px 20px;
       border-radius: 999px;
       font-size: 16px;
       font-weight: 700;
@@ -283,26 +288,78 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: 12px;
       color: var(--muted);
       font-weight: 600;
     }
 
     .payment-methods-img {
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 11px;
       color: var(--muted);
     }
 
+    .support-note {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .support-note a {
+      color: var(--green);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Mobile Floating Bottom Bar */
+    .mobile-sticky-bar {
+      display: none;
+    }
+
     @media (max-width: 900px) {
-      .gateway-card {
-        grid-template-columns: 1fr;
-        padding: 28px;
-        gap: 32px;
+      main {
+        padding: 24px 0 100px;
       }
+
+      .gateway-card {
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+        gap: 24px;
+      }
+
+      /* Reorders payment box right below main title on mobile */
+      .gateway-info-header {
+        order: 1;
+      }
+
       .payment-box {
+        order: 2;
+        width: 100%;
         position: static;
+      }
+
+      .gateway-info-body {
+        order: 3;
+      }
+
+      .mobile-sticky-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        padding: 12px 20px;
+        border-top: 1.5px solid var(--line);
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+        z-index: 999;
       }
     }
   </style>
@@ -321,99 +378,109 @@
   <main>
     <div class="wrap">
       <div class="gateway-card">
+        
+        <!-- Left / Core Details Column -->
         <div class="gateway-info">
-          <p class="eyebrow">All-In-One Career Accelerator</p>
-          <h1>3-Month Data Analyst Masterclass & Job Prep</h1>
-          <p class="lead">An intensive, end-to-end cohort designed to take you from core fundamentals to job-ready with live classes, real enterprise projects, ATS resume templates, and direct referrals.</p>
           
-          <!-- Value Stack Overview -->
-          <div class="value-stack">
-            <h3>🎁 What's Included Inside (Total Value: ₹15,500+)</h3>
-            <div class="value-row">
-              <span>Extended Live Bootcamp (Sat, Wed, Sun)</span>
-              <span class="strike">₹5,000</span>
+          <div class="gateway-info-header">
+            <p class="eyebrow">All-In-One Career Accelerator</p>
+            <h1>3-Month Data Analyst Masterclass & Job Prep</h1>
+            <p class="lead">An intensive, end-to-end cohort designed to take you from core fundamentals to job-ready with live classes, real enterprise projects, ATS resume templates, and direct referrals.</p>
+          </div>
+
+          <!-- Price Box for Mobile Positioning (controlled via CSS order) -->
+
+          <div class="gateway-info-body">
+            <!-- Value Stack Overview -->
+            <div class="value-stack">
+              <h3>🎁 What's Included Inside (Total Value: ₹15,500+)</h3>
+              <div class="value-row">
+                <span>Extended Live Bootcamp (Sat, Wed, Sun)</span>
+                <span class="strike">₹5,000</span>
+              </div>
+              <div class="value-row">
+                <span>3 Enterprise-Grade Portfolio Projects</span>
+                <span class="strike">₹3,000</span>
+              </div>
+              <div class="value-row">
+                <span>ATS-Optimized Resume Templates & Prep Suite</span>
+                <span class="strike">₹2,500</span>
+              </div>
+              <div class="value-row">
+                <span>100+ SQL & DAX Interview Questions Bank</span>
+                <span class="strike">₹2,000</span>
+              </div>
+              <div class="value-row">
+                <span>1-on-1 Personal Mentorship & Mock Interviews</span>
+                <span class="strike">₹2,000</span>
+              </div>
+              <div class="value-row">
+                <span>Direct Job Referrals & Completion Certificate</span>
+                <span class="strike">₹1,000</span>
+              </div>
             </div>
-            <div class="value-row">
-              <span>3 Enterprise-Grade Portfolio Projects</span>
-              <span class="strike">₹3,000</span>
+
+            <!-- Section 1: Live Classes & Mentorship -->
+            <div class="section-subtitle">⚡ 1. Live Training & Mentorship</div>
+            <div class="benefits-list">
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>4-Hour Live Intensive Sessions:</strong> Held every <strong>Saturday, Wednesday, and Sunday</strong> to build deep, practical problem-solving speed.</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>1-on-1 Dedicated Mentorship:</strong> Personal calls to review your progress, clear specific code bugs, and define your individual job roadmap.</div>
+              </div>
             </div>
-            <div class="value-row">
-              <span>ATS-Optimized Resume Templates & Prep Suite</span>
-              <span class="strike">₹2,500</span>
+
+            <!-- Section 2: Real-World Portfolio Projects -->
+            <div class="section-subtitle">📂 2. Production Real-World Projects</div>
+            <div class="benefits-list">
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>E-Commerce SQL Analytics:</strong> Querying raw sales, customer retention, churn metrics, and revenue aggregations.</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>Power BI Executive Dashboard:</strong> End-to-end data modeling, DAX measures, and interactive KPI design.</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>Google BigQuery ETL Pipeline:</strong> Handling high-volume cloud datasets and connecting them directly to Looker Studio.</div>
+              </div>
             </div>
-            <div class="value-row">
-              <span>100+ SQL & DAX Interview Questions Bank</span>
-              <span class="strike">₹2,000</span>
+
+            <!-- Section 3: Resume & Interview Suite -->
+            <div class="section-subtitle">📄 3. ATS Resume Suite & Job Preparation</div>
+            <div class="benefits-list">
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>ATS-Optimized Resume Templates:</strong> Pre-formatted, recruiter-tested layouts engineered to pass automated screening filters.</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>High-Impact Bullet Formulas:</strong> Learn how to structure your resume bullet points using metric-driven action verbs that impress hiring managers.</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>Mock Technical Interviews:</strong> Live practice rounds covering complex SQL joins, window functions, and business DAX scenarios.</div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check">✓</div>
+                <div><strong>Job Referrals & Certificate:</strong> Get referred to open analyst roles through network connections and earn a verified certificate.</div>
+              </div>
             </div>
-            <div class="value-row">
-              <span>1-on-1 Personal Mentorship & Mock Interviews</span>
-              <span class="strike">₹2,000</span>
-            </div>
-            <div class="value-row">
-              <span>Direct Job Referrals & Completion Certificate</span>
-              <span class="strike">₹1,000</span>
+
+            <div class="tags">
+              <span>3 Months Access</span>
+              <span>Real Projects</span>
+              <span>ATS Resume Suite</span>
+              <span>Mock Interviews</span>
+              <span>Referrals</span>
+              <span>Certificate</span>
             </div>
           </div>
 
-          <!-- Section 1: Live Classes & Mentorship -->
-          <div class="section-subtitle">⚡ 1. Live Training & Mentorship</div>
-          <div class="benefits-list">
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>4-Hour Live Intensive Sessions:</strong> Held every <strong>Saturday, Wednesday, and Sunday</strong> to build deep, practical problem-solving speed.</div>
-            </div>
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>1-on-1 Dedicated Mentorship:</strong> Personal calls to review your progress, clear specific code bugs, and define your individual job roadmap.</div>
-            </div>
-          </div>
-
-          <!-- Section 2: Real-World Portfolio Projects -->
-          <div class="section-subtitle">📂 2. Production Real-World Projects</div>
-          <div class="benefits-list">
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>E-Commerce SQL Analytics:</strong> Querying raw sales, customer retention, churn metrics, and revenue aggregations.</div>
-            </div>
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>Power BI Executive Dashboard:</strong> End-to-end data modeling, DAX measures, and interactive KPI design.</div>
-            </div>
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>Google BigQuery ETL Pipeline:</strong> Handling high-volume cloud datasets and connecting them directly to Looker Studio.</div>
-            </div>
-          </div>
-
-          <!-- Section 3: Resume & Interview Suite -->
-          <div class="section-subtitle">📄 3. ATS Resume Suite & Job Preparation</div>
-          <div class="benefits-list">
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>ATS-Optimized Resume Templates:</strong> Pre-formatted, recruiter-tested layouts engineered to pass automated screening filters.</div>
-            </div>
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>High-Impact Bullet Formulas:</strong> Learn how to structure your resume bullet points using metric-driven action verbs that impress hiring managers.</div>
-            </div>
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>Mock Technical Interviews:</strong> Live practice rounds covering complex SQL joins, window functions, and business DAX scenarios.</div>
-            </div>
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div><strong>Job Referrals & Certificate:</strong> Get referred to open analyst roles through network connections and earn an verified certificate.</div>
-            </div>
-          </div>
-
-          <div class="tags">
-            <span>3 Months Access</span>
-            <span>Real Projects</span>
-            <span>ATS Resume Suite</span>
-            <span>Mock Interviews</span>
-            <span>Referrals</span>
-            <span>Certificate</span>
-          </div>
         </div>
 
         <!-- Right Side Sticky Payment Box -->
@@ -423,10 +490,7 @@
           <div class="duration">Complete 3-Month Program (One-Time)</div>
 
           <!-- DIRECT RAZORPAY CHECKOUT LINK -->
-          <a 
-            href="https://rzp.io/rzp/JMfAJU1F" 
-            class="btn-checkout"
-          >
+          <a href="https://rzp.io/rzp/JMfAJU1F" class="btn-checkout">
             Enroll Now for ₹1,999 →
           </a>
 
@@ -437,14 +501,27 @@
           <div class="payment-methods-img">
             Supports GPay, PhonePe, Paytm, UPI, Cards, NetBanking
           </div>
-          <div class="support-note" style="margin-top: 16px; text-align: center; font-size: 13px; color: #66706c;">
-  💬 <strong>Have a question before paying?</strong><br>
-  WhatsApp or Call: <a href="https://wa.me/918688196857" style="color: #176b5d; font-weight: 700;">+91 8688196857</a>
-</div>
+
+          <div class="support-note">
+            💬 Have a question before paying?<br>
+            WhatsApp or Call: <a href="https://wa.me/918688196857" target="_blank">+91 8688196857</a>
+          </div>
         </div>
+
       </div>
     </div>
   </main>
+
+  <!-- Mobile Sticky Bottom Bar -->
+  <div class="mobile-sticky-bar">
+    <div>
+      <div style="font-size:11px; color:var(--muted); font-weight:600;">One-Time Payment</div>
+      <div style="font-family: var(--heading); font-weight: 800; font-size: 20px; color: var(--green);">₹1,999</div>
+    </div>
+    <a href="https://rzp.io/rzp/JMfAJU1F" class="btn-checkout" style="width: auto; padding: 12px 20px; font-size: 14px;">
+      Enroll Now →
+    </a>
+  </div>
 
 </body>
 </html>
