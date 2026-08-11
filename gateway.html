@@ -225,7 +225,7 @@
       background: #fbfbf8;
       border: 1.5px solid var(--line);
       border-radius: 18px;
-      padding: 24px;
+      padding: 32px 24px;
       text-align: center;
       position: sticky;
       top: 100px;
@@ -240,7 +240,7 @@
 
     .price {
       font-family: var(--heading);
-      font-size: 40px;
+      font-size: 44px;
       font-weight: 800;
       color: var(--green);
       margin-bottom: 2px;
@@ -250,121 +250,49 @@
     .duration {
       color: var(--muted);
       font-size: 13px;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
       font-weight: 600;
     }
 
-    .qr-container {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 10px;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-
-    .qr-container img {
-      width: 160px;
-      height: 160px;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .upi-id-display {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--ink);
-      background: var(--paper);
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      word-break: break-all;
-      border: 1px solid var(--line);
-      transition: background 0.2s;
-    }
-
-    .upi-id-display:hover {
-      background: var(--green-light);
-    }
-
-    .btn {
+    .btn-checkout {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      padding: 12px 18px;
+      padding: 16px 20px;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 700;
-      background: var(--ink);
+      background: var(--green);
       color: var(--white);
       text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
       border: none;
       cursor: pointer;
+      box-shadow: 0 4px 14px rgba(23, 107, 93, 0.3);
     }
 
-    .btn:hover {
-      background: var(--green);
-      transform: translateY(-2px);
-    }
-
-    .payment-form {
-      margin-top: 20px;
-      padding-top: 18px;
-      border-top: 1.5px dashed var(--line);
-      text-align: left;
-    }
-
-    .payment-form h3 {
-      font-size: 15px;
-      font-family: var(--heading);
-      margin: 0 0 10px;
-      text-align: center;
-    }
-
-    .field {
-      margin-bottom: 10px;
-    }
-
-    .field label {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--muted);
-      margin-bottom: 3px;
-    }
-
-    .field input {
-      width: 100%;
-      padding: 9px 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      font-size: 13px;
-      font-family: var(--body);
-      background: var(--white);
-    }
-
-    .btn-confirm {
-      background: var(--green);
-      color: var(--white);
-      margin-top: 4px;
-    }
-
-    .btn-confirm:hover {
+    .btn-checkout:hover {
       background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(23, 107, 93, 0.4);
     }
 
-    .confirm-msg {
-      display: none;
-      margin-top: 10px;
-      padding: 10px;
-      background: var(--green-light);
-      color: var(--green-dark);
-      border-radius: 8px;
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
       font-size: 12px;
-      text-align: center;
+      color: var(--muted);
       font-weight: 600;
+    }
+
+    .payment-methods-img {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--muted);
     }
 
     @media (max-width: 900px) {
@@ -494,112 +422,25 @@
           <div class="price">₹1,999</div>
           <div class="duration">Complete 3-Month Program (One-Time)</div>
 
-          <!-- Clean QR Code for ₹1999 -->
-          <div class="qr-container">
-            <img 
-              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dkoppisetti.sivamani%40ybl%26pn%3DKOPPISETTI%2520SIVAMANI%26am%3D1999%26cu%3DINR" 
-              alt="UPI QR Code for ₹1999" 
-            >
-          </div>
-
-          <!-- One-Click Copyable UPI ID -->
-          <div class="upi-id-display" onclick="copyUpiId()" style="cursor: pointer;" title="Click to copy UPI ID">
-            <span id="upiText">koppisetti.sivamani@ybl</span> 📋
-          </div>
-
-          <!-- Clean Mobile Direct Link (Without restrictive note parameters) -->
+          <!-- DIRECT RAZORPAY CHECKOUT LINK -->
           <a 
-            href="upi://pay?pa=koppisetti.sivamani@ybl&pn=KOPPISETTI%20SIVAMANI&am=1999&cu=INR" 
-            class="btn"
+            href="https://rzp.io/rzp/JMfAJU1F" 
+            class="btn-checkout"
           >
-            Pay via UPI App (₹1,999) →
+            Enroll Now for ₹1,999 →
           </a>
 
-          <p style="font-size: 11px; color: var(--muted); margin-top: 8px;">
-            If UPI app blocks the link: Scan QR code or tap above to copy UPI ID directly into GPay/PhonePe.
-          </p>
+          <div class="secure-badge">
+            🔒 256-Bit Encrypted & Instant Confirmation
+          </div>
 
-          <!-- DEDICATED PAID ENROLLMENTS FORM -->
-          <form class="payment-form" id="payDetailsForm" action="https://script.google.com/macros/s/AKfycbwOXemxSTICNoJx7DzwhC--tHEwFMNreb5RWto7WyzHzTsn8CI4zDfBx0IFTIl2LJEPfQ/exec" method="POST">
-            <h3>Submit Payment Details</h3>
-
-            <div class="field">
-              <label for="pname">Your Full Name</label>
-              <input type="text" id="pname" name="name" placeholder="Full Name" required>
-            </div>
-
-            <div class="field">
-              <label for="pemail">Email Address</label>
-              <input type="email" id="pemail" name="email" placeholder="you@example.com" required>
-            </div>
-
-            <div class="field">
-              <label for="pphone">Phone Number</label>
-              <input type="tel" id="pphone" name="phone" placeholder="+91 00000 00000" required>
-            </div>
-
-            <div class="field">
-              <label for="ptxn">UPI Transaction ID / UTR</label>
-              <input type="text" id="ptxn" name="txn_id" placeholder="12-digit Ref / UTR No" required>
-            </div>
-
-            <button type="submit" class="btn btn-confirm">Confirm Enrollment ✓</button>
-
-            <div class="confirm-msg" id="confirmMsg">
-              Enrollment details submitted! Sivamani will verify your payment and email your onboarding kit shortly.
-            </div>
-          </form>
-
+          <div class="payment-methods-img">
+            Supports GPay, PhonePe, Paytm, UPI, Cards, NetBanking
+          </div>
         </div>
       </div>
     </div>
   </main>
-
-  <script>
-    // Copy UPI ID Script
-    function copyUpiId() {
-      const upi = "koppisetti.sivamani@ybl";
-      navigator.clipboard.writeText(upi).then(() => {
-        const display = document.getElementById("upiText");
-        display.innerHTML = "Copied to Clipboard! ✓";
-        setTimeout(() => {
-          display.innerHTML = upi;
-        }, 2000);
-      });
-    }
-
-    // Fast Submit Form Script
-    const payForm = document.getElementById("payDetailsForm");
-    const confirmMsg = document.getElementById("confirmMsg");
-
-    if (payForm) {
-      payForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const btn = payForm.querySelector('button[type="submit"]');
-
-        btn.disabled = true;
-        btn.textContent = "Submitting Details...";
-
-        const formData = new FormData(payForm);
-
-        fetch(payForm.action, {
-          method: "POST",
-          body: formData,
-          mode: "no-cors"
-        })
-        .then(() => {
-          btn.textContent = "Enrollment Confirmed ✓";
-          confirmMsg.style.display = "block";
-          payForm.reset();
-        })
-        .catch((err) => {
-          console.error("Payment save error:", err);
-          btn.disabled = false;
-          btn.textContent = "Confirm Enrollment ✓";
-        });
-      });
-    }
-  </script>
 
 </body>
 </html>
